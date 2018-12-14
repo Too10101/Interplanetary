@@ -81,6 +81,12 @@ public class Astronaut {
         dy = -dy;
     }
     
+    public void gameOver() {
+        setColor(Color.BLACK);
+        x = 100;
+        y = 100;
+    }
+    
     public void update() {
         move(dx,dy);
     }

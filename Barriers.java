@@ -85,6 +85,11 @@ public class Barriers {
         y += dy * 3;
     }
     
+    public void bounce() {
+        dx = -dx;
+        dy = -dy;
+    }
+    
     public void update() {
         move(dx,dy);
     }
