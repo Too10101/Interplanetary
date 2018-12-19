@@ -20,7 +20,7 @@ public class Main extends JPanel {
     private Timer time;
     private Barriers barrier, barrier2, barrier3, barrier4, 
                      wall, wall2, wall3,
-                     obstacle1, obstacle2, obstacle3,
+                     obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6,
                      door;
     private Astronaut astronaut, spaceShip,
                       shot1, shot2;
@@ -42,6 +42,9 @@ public class Main extends JPanel {
         obstacle1 = new Barriers(20, -200, 50, 10, Color.BLUE);
         obstacle2 = new Barriers(20, -200, 50, 10, Color.BLUE);
         obstacle3 = new Barriers(20, -200, 50, 10, Color.BLUE);
+        obstacle4 = new Barriers(20, -200, 10, 50, Color.RED);
+        obstacle5 = new Barriers(20, -200, 10, 50, Color.RED);
+        obstacle6 = new Barriers(20, -200, 10, 50, Color.RED);
         
         door = new Barriers(794, 393, 10, 50, Color.GREEN);
         
@@ -72,7 +75,7 @@ public class Main extends JPanel {
             }
         }
         
-        if (levels == 1 || levels == 3) {
+        if (levels == 1 || levels == 3 || levels == 5) {
             int x[] = {200,200,250};
             int y[] = {310,360,360};
             
@@ -118,13 +121,19 @@ public class Main extends JPanel {
             obstacle3.draw(g);
         }
         
-        door.draw(g);
-         
-        shot1.draw(g);
-        shot2.draw(g);
+        if (levels == 4) {
+            obstacle4.draw(g);
+            obstacle5.draw(g);
+            obstacle6.draw(g);
+        }
         
+        door.draw(g);
+  
         if (levels == 2) {
             enemy1.draw(g);
+            
+            shot1.draw(g);
+            shot2.draw(g);
         }
 
         astronaut.draw(g);
@@ -149,6 +158,9 @@ public class Main extends JPanel {
             obstacle1.update();
             obstacle2.update();
             obstacle3.update();
+            obstacle4.update();
+            obstacle5.update();
+            obstacle6.update();
             spaceShip.update();
             astronaut.update();
             shot1.update();
@@ -222,7 +234,7 @@ public class Main extends JPanel {
     
     private void spaceShipCollision() {
         
-        if (levels == 0 || levels == 2) {
+        if (levels == 0 || levels == 2 || levels ==  4) {
             if (astronaut.getX()+ astronaut.getSize() >= door.getX() && astronaut.getY() + astronaut.getSize() >= door.getY()) {
                 if (astronaut.getX() <= door.getX() + door.getLength() && astronaut.getY() <= door.getY() + door.getWidth()) {
 
@@ -256,6 +268,10 @@ public class Main extends JPanel {
                     
                     if (levels == 3) {
                         spaceShip.setColor(Color.RED);
+                    }
+                    
+                    if (levels == 5) {
+                        spaceShip.setColor(Color.MAGENTA);
                     }
                     
                     door.setX(-100);
@@ -338,6 +354,15 @@ public class Main extends JPanel {
                     obstacle3.setX(800);
                     obstacle3.setY(640);
                     obstacle3.setColor(Color.RED);
+                    
+                    obstacle4.setX(400);
+                    obstacle4.setY(20);
+                    
+                    obstacle5.setX(580);
+                    obstacle5.setY(20);
+                    
+                    obstacle6.setX(780);
+                    obstacle6.setY(20);
                     
                     astronaut.setX(500);
                     astronaut.setY(750);
@@ -454,6 +479,36 @@ public class Main extends JPanel {
             }
         }
         
+        if (astronaut.getX() <= obstacle2.getX() + obstacle2.getLength() && astronaut.getY() <= obstacle2.getY() + obstacle2.getWidth()) {
+            if (astronaut.getX() + astronaut.getSize() >= obstacle2.getX() && astronaut.getY() + astronaut.getSize() >= obstacle2.getY()) {
+                astronaut.gameOver();
+            }
+        }
+        
+        if (astronaut.getX() <= obstacle3.getX() + obstacle3.getLength() && astronaut.getY() <= obstacle3.getY() + obstacle3.getWidth()) {
+            if (astronaut.getX() + astronaut.getSize() >= obstacle3.getX() && astronaut.getY() + astronaut.getSize() >= obstacle3.getY()) {
+                astronaut.gameOver();
+            }
+        }
+        
+        if (astronaut.getX() <= obstacle4.getX() + obstacle4.getLength() && astronaut.getY() <= obstacle4.getY() + obstacle4.getWidth()) {
+            if (astronaut.getX() + astronaut.getSize() >= obstacle4.getX() && astronaut.getY() + astronaut.getSize() >= obstacle4.getY()) {
+                astronaut.gameOver();
+            }
+        }
+        
+        if (astronaut.getX() <= obstacle5.getX() + obstacle5.getLength() && astronaut.getY() <= obstacle5.getY() + obstacle5.getWidth()) {
+            if (astronaut.getX() + astronaut.getSize() >= obstacle5.getX() && astronaut.getY() + astronaut.getSize() >= obstacle5.getY()) {
+                astronaut.gameOver();
+            }
+        }
+        
+        if (astronaut.getX() <= obstacle6.getX() + obstacle6.getLength() && astronaut.getY() <= obstacle6.getY() + obstacle6.getWidth()) {
+            if (astronaut.getX() + astronaut.getSize() >= obstacle6.getX() && astronaut.getY() + astronaut.getSize() >= obstacle6.getY()) {
+                astronaut.gameOver();
+            }
+        }
+        
         if (levels <= 2) {
             if (obstacle1.getX() <= barrier.getX() + 20) {
                 obstacle1.setDX(1);
@@ -462,13 +517,7 @@ public class Main extends JPanel {
             if (obstacle1.getX() >= wall2.getX() - 50) {
                 obstacle1.setDX(-1);
             }
-
-
-            if (astronaut.getX() <= obstacle2.getX() + obstacle2.getLength() && astronaut.getY() <= obstacle2.getY() + obstacle2.getWidth()) {
-                if (astronaut.getX() + astronaut.getSize() >= obstacle2.getX() && astronaut.getY() + astronaut.getSize() >= obstacle2.getY()) {
-                    astronaut.gameOver();
-                }
-            }
+            
 
             if (obstacle2.getX() <= barrier.getX() + 20) {
                 obstacle2.setDX(2);
@@ -478,13 +527,7 @@ public class Main extends JPanel {
                 obstacle2.setDX(-2);
             }
 
-
-            if (astronaut.getX() <= obstacle3.getX() + obstacle3.getLength() && astronaut.getY() <= obstacle3.getY() + obstacle3.getWidth()) {
-                if (astronaut.getX() + astronaut.getSize() >= obstacle3.getX() && astronaut.getY() + astronaut.getSize() >= obstacle3.getY()) {
-                    astronaut.gameOver();
-                }
-            }
-
+            
             if (obstacle3.getX() <= barrier.getX() + 20) {
                 obstacle3.setDX(3);
             }
@@ -495,7 +538,7 @@ public class Main extends JPanel {
         }
         
         
-        if (levels >= 4) {
+        if (levels == 4) {
             if (obstacle1.getX() >= barrier3.getX() - 50) {
                 obstacle1.setDX(-1);
             }
@@ -504,12 +547,6 @@ public class Main extends JPanel {
                 obstacle1.setDX(1);
             }
 
-
-            if (astronaut.getX() <= obstacle2.getX() + obstacle2.getLength() && astronaut.getY() <= obstacle2.getY() + obstacle2.getWidth()) {
-                if (astronaut.getX() + astronaut.getSize() >= obstacle2.getX() && astronaut.getY() + astronaut.getSize() >= obstacle2.getY()) {
-                    astronaut.setX(1000);
-                }
-            }
 
             if (obstacle2.getX() >= barrier3.getX() - 50) {
                 obstacle2.setDX(-2);
@@ -520,18 +557,39 @@ public class Main extends JPanel {
             }
 
 
-            if (astronaut.getX() <= obstacle3.getX() + obstacle3.getLength() && astronaut.getY() <= obstacle3.getY() + obstacle3.getWidth()) {
-                if (astronaut.getX() + astronaut.getSize() >= obstacle3.getX() && astronaut.getY() + astronaut.getSize() >= obstacle3.getY()) {
-                    astronaut.setX(1000);
-                }
-            }
-
             if (obstacle3.getX() >= barrier3.getX() - 50) {
                 obstacle3.setDX(-1);
             }
 
             if (obstacle3.getX() <= wall2.getX() + 400) {
                 obstacle3.setDX(1);
+            }
+            
+            
+            if (obstacle4.getY() <= barrier2.getY() + 20) {
+                obstacle4.setDY(1);
+            }
+
+            if (obstacle4.getY() >= wall2.getY() - 50) {
+                obstacle4.setDY(-1);
+            }
+            
+            
+            if (obstacle5.getY() <= barrier2.getY() + 20) {
+                obstacle5.setDY(2);
+            }
+
+            if (obstacle5.getY() >= wall2.getY() - 50) {
+                obstacle5.setDY(-2);
+            }
+            
+            
+            if (obstacle6.getY() <= barrier2.getY() + 20) {
+                obstacle6.setDY(1);
+            }
+
+            if (obstacle6.getY() >= wall2.getY() - 50) {
+                obstacle6.setDY(-1);
             }
         }
     }
