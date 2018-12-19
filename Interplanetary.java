@@ -16,7 +16,7 @@ public class Interplanetary {
 
 
     public static void main(String[] args) {
-        JFrame p = new JFrame("Planet");
+        JFrame p = new JFrame("Planetary");
         p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p.setSize(1200, 840);
         Main i = new Main();

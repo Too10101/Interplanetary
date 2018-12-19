@@ -507,7 +507,7 @@ public class Main extends JPanel {
 
             if (astronaut.getX() <= obstacle2.getX() + obstacle2.getLength() && astronaut.getY() <= obstacle2.getY() + obstacle2.getWidth()) {
                 if (astronaut.getX() + astronaut.getSize() >= obstacle2.getX() && astronaut.getY() + astronaut.getSize() >= obstacle2.getY()) {
-                    astronaut.gameOver();
+                    astronaut.setX(1000);
                 }
             }
 
@@ -522,7 +522,7 @@ public class Main extends JPanel {
 
             if (astronaut.getX() <= obstacle3.getX() + obstacle3.getLength() && astronaut.getY() <= obstacle3.getY() + obstacle3.getWidth()) {
                 if (astronaut.getX() + astronaut.getSize() >= obstacle3.getX() && astronaut.getY() + astronaut.getSize() >= obstacle3.getY()) {
-                    astronaut.gameOver();
+                    astronaut.setX(1000);
                 }
             }
 
